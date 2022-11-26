@@ -96,11 +96,15 @@ input, select{
   width: 60%;
   height: 25px;
 }
-.is-valid {
-  color: #198754;
+.is-validBorder {
+  border: 2px solid #198754;
 }
 
-.is-invalid {
+.is-invalidBorder {
+  border: 1px solid #842029;
+}
+
+.is-invalidText {
   color: #842029;
 }
 
