@@ -75,17 +75,38 @@ window.onload = function () {
     });
 
     document.getElementById("formMoviesAdd").addEventListener("submit", (e) =>{
+        let ulErrores = document.querySelector(".errores")
+        let errores = []
         for (let x = 0; x < 6; x++) {
             if (e.target[x].value === "" || e.target[x].classList.contains("is-invalidBorder")) {
-                e.preventDefault()
                 if (e.target[x].value === "") {
                     validarCampo(e.target[x], e.target[x].name, "Debes completar este campo")
+                    errores.push( `${e.target[x].name}: Debes completar este campo`)
                 } else if (e.target[x].name === "length") {
                     validarCampo(e.target[x], e.target[x].name, "Entre 60 y 360 minutos", true)
+                    errores.push( `${e.target[x].name}: Entre 60 y 360 minutos`)
                 } else if (e.target[x].name === "rating" || e.target[x].name === "awards"){
                     validarCampo(e.target[x], e.target[x].name, `Entre 0 y 10`, true)
+                    errores.push( `${e.target[x].name}: Entre 0 y 10`)
                 }
             }
+        }
+       
+        if (errores.length > 0) {
+            e.preventDefault()
+            
+            ulErrores.classList.add("alert-warning")
+            ulErrores.innerHTML = ""
+            errores.forEach(error => {
+                ulErrores.innerHTML += `<li>${error}</li>`
+            });
+            setTimeout(() => {
+                ulErrores.innerHTML = ""
+            }, 5000)
+        }else{
+            ulErrores.classList.remove("alert-warning")
+            ulErrores.classList.add("alert-exito")
+            ulErrores.innerHTML = "La película se guardó satisfactoriamente."
         }
     })
 }

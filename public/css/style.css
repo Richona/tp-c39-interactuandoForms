@@ -114,3 +114,10 @@ input, select{
   text-align: center;
   border-radius: 10px;
 }
+.alert-exito{
+  color:#198754;
+  background-color: #90f1ad;
+  text-align: center;
+  padding: 20px 5px;
+  border-radius: 10px;
+}
